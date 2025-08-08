@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kaung Myat Kyaw - Resume</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts for a clean, modern look -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Dark theme colors */
+            --primary-color: #4caf50;
+            --secondary-color: #2196f3;
+            --background-color: #121212;
+            --container-bg-color: #1e1e1e;
+            --text-color: #e0e0e0;
+            --text-light: #bdbdbd;
+            --border-color: #424242;
+            --card-bg-color: #2a2a2a;
+            --accent-color: #ffc107;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--container-bg-color);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            overflow: hidden;
+        }
+
+        /* ----- Header & Hero Section ----- */
+        .header {
+            display: flex;
+            flex-direction: row; /* Aligns items horizontally */
+            align-items: center; /* Centers items vertically */
+            text-align: left;
+            padding: 40px;
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+            border-bottom: 2px solid var(--border-color);
+            gap: 40px; /* Space between the image and text */
+        }
+
+        /* Profile Picture Styling - now square */
+        .profile-picture {
+            width: 150px;
+            height: 150px;
+            border-radius: 8px; /* Square with rounded corners */
+            object-fit: cover;
+            border: 4px solid var(--primary-color);
+            flex-shrink: 0; /* Prevents it from shrinking on smaller screens */
+            animation: fadeInScale 1s ease-out forwards;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .header-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            color: var(--text-light);
+            font-size: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: flex-start; /* Aligns text to the left */
+            gap: 10px;
+            margin-bottom: 5px;
+        }
+
+        .header p span {
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .header a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        .header a:hover {
+            color: var(--primary-color);
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ----- Section Styling ----- */
+        .content-sections {
+            padding: 0 40px 40px 40px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            padding: 30px;
+            border-radius: 8px;
+            background: var(--card-bg-color);
+            border: 1px solid var(--border-color);
+            transform: translateY(20px);
+            opacity: 0;
+            transition: transform 0.6s ease-out, opacity 0.6s ease-out;
+        }
+
+        .section.fade-in {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 50px;
+            height: 3px;
+            background-color: var(--secondary-color);
+            border-radius: 2px;
+        }
+        
+        .section h2 i {
+            margin-right: 10px;
+            color: var(--secondary-color);
+        }
+
+        .summary-text {
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+
+        /* ----- Competencies & Personal Attributes ----- */
+        .competencies, .attributes, .hobbies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .competency-item, .attribute-item, .hobby-item {
+            background-color: #2a2a2a;
+            color: var(--text-color);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .competency-item:hover, .attribute-item:hover, .hobby-item:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* ----- Experience & Education ----- */
+        .experience-item, .education-item {
+            margin-bottom: 25px;
+            padding: 15px;
+            border-left: 3px solid var(--secondary-color);
+            background: #2a2a2a;
+            border-radius: 0 8px 8px 0;
+            transition: background-color 0.3s ease;
+        }
+
+        .experience-item:hover, .education-item:hover {
+            background-color: #3a3a3a;
+        }
+
+        .experience-item:last-child, .education-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .job-title, .degree-title {
+            font-weight: 700;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+
+        .company-name, .school-name {
+            font-style: italic;
+            color: var(--text-light);
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        .job-date, .degree-date {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 10px;
+        }
+        
+        .job-description li {
+            margin-left: 20px;
+            font-size: 0.95rem;
+            color: var(--text-light);
+            list-style-type: none; /* Hide default list style */
+            position: relative;
+        }
+
+        .job-description li::before {
+            content: "\f00c"; /* Font Awesome checkmark icon */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            color: var(--secondary-color);
+            position: absolute;
+            left: -25px;
+        }
+
+        /* ----- Technical Skills ----- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-item {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .skill-name {
+            font-weight: 500;
+        }
+
+        .skill-bar-container {
+            width: 100%;
+            height: 8px;
+            background-color: var(--border-color);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .skill-bar {
+            height: 100%;
+            background-color: var(--accent-color);
+            width: 0; /* Start at 0 width for animation */
+            transition: width 1.5s ease-out;
+        }
+        
+        /* ----- Responsiveness ----- */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                padding: 0;
+            }
+            
+            .header {
+                flex-direction: column; /* Stacks items on small screens */
+                align-items: center;
+                text-align: center;
+                gap: 20px;
+                padding: 20px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .header p {
+                flex-direction: column;
+                align-items: center; /* Center aligns text on small screens */
+                text-align: center;
+                gap: 5px;
+            }
+            
+            .header-info p {
+                justify-content: center;
+            }
+
+            .content-sections {
+                padding: 0 20px 20px 20px;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+
+            .section h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header & Contact Info -->
+        <header class="header">
+            <!-- Profile Picture -->
+            <img src="https://placehold.co/150x150/4caf50/ffffff?text=Profile" alt="Profile Picture" class="profile-picture">
+            
+            <div class="header-info">
+                <h1>Kaung Myat Kyaw</h1>
+                <p>
+                    <span style="font-style: italic;">Data Analyst</span>
+                </p>
+                <p>
+                    📍 <a href="https://maps.app.goo.gl/your-location" target="_blank" rel="noopener noreferrer">No.27, Pathein Nyunt 6st, Mingalar Taungnyunt Tsp, Yangon, Myanmar</a>
+                </p>
+                <p>
+                    📧 <a href="mailto:kaungmyatkyaw446844590@gmail.com">kaungmyatkyaw446844590@gmail.com</a> | 📞 +95 9446844590
+                </p>
+                <p>
+                    🎂 Date of Birth: January 6, 1998
+                </p>
+            </div>
+        </header>
+
+        <main class="content-sections">
+            <!-- Professional Summary -->
+            <section id="summary" class="section">
+                <h2><i class="fa-solid fa-user-tie"></i>Professional Summary</h2>
+                <p class="summary-text">Detail-oriented and results-driven Data Analyst with over 10 years of experience spanning telecom analytics, production management, and business operations. Proven ability to gather, clean, and interpret complex datasets to uncover actionable insights. Skilled in SQL, Python, R, and Power BI, with a strong foundation in statistical analysis and dashboard development. Adept at collaborating across departments, leading teams, and driving data-informed decision-making.</p>
+            </section>
+
+            <!-- Core Competencies -->
+            <section id="competencies" class="section">
+                <h2><i class="fa-solid fa-chart-line"></i>Core Competencies</h2>
+                <div class="competencies">
+                    <div class="competency-item">Data Analysis & Visualization</div>
+                    <div class="competency-item">SQL & Database Management</div>
+                    <div class="competency-item">Python & R Programming</div>
+                    <div class="competency-item">Power BI & Excel Reporting</div>
+                    <div class="competency-item">Data Cleaning & Validation</div>
+                    <div class="competency-item">Statistical Modeling</div>
+                    <div class="competency-item">Dashboard Development</div>
+                    <div class="competency-item">Process Optimization</div>
+                    <div class="competency-item">Cross-functional Collaboration</div>
+                    <div class="competency-item">Leadership & Training</div>
+                </div>
+            </section>
+
+            <!-- Professional Experience -->
+            <section id="experience" class="section">
+                <h2><i class="fa-solid fa-briefcase"></i>Professional Experience</h2>
+                <div class="experience-item">
+                    <div class="job-title">Data Analyst</div>
+                    <div class="company-name">Myanmar Padauk Engineering & Construction Co., Ltd – Yangon</div>
+                    <div class="job-date">Mar 2024 – Present</div>
+                    <ul class="job-description">
+                        <li>Gather and compile telecom data from network logs and usage records.</li>
+                        <li>Ensure data integrity through validation and quality checks.</li>
+                        <li>Maintain and update databases and data management systems.</li>
+                        <li>Analyze trends, patterns, and anomalies in telecom datasets.</li>
+                        <li>Develop dashboards and visualizations to present insights.</li>
+                        <li>Conduct training sessions to promote data literacy within the team.</li>
+                    </ul>
+                </div>
+                <div class="experience-item">
+                    <div class="job-title">Production Assistant Manager</div>
+                    <div class="company-name">Nilar Frozen Foods Co., Ltd – Nay Pyi Taw</div>
+                    <div class="job-date">May 2021 – Feb 2024</div>
+                    <ul class="job-description">
+                        <li>Led production scheduling and resource coordination to meet delivery targets.</li>
+                        <li>Implemented quality control procedures and corrective actions.</li>
+                        <li>Supervised and trained production staff, fostering a culture of safety and efficiency.</li>
+                        <li>Managed inventory levels and optimized resource utilization.</li>
+                        <li>Collaborated with engineering, QA, and logistics teams for seamless operations.</li>
+                    </ul>
+                </div>
+                <div class="experience-item">
+                    <div class="job-title">Personal Assistant</div>
+                    <div class="company-name">Nilar Holding Co., Ltd – Yangon</div>
+                    <div class="job-date">Sep 2019 – Nov 2021</div>
+                    <ul class="job-description">
+                        <li>Managed executive schedules, travel, and communications.</li>
+                        <li>Coordinated meetings, events, and logistics.</li>
+                        <li>Supported research, data collection, and budget monitoring.</li>
+                    </ul>
+                </div>
+                <div class="experience-item">
+                    <div class="job-title">Sales & Marketing Supervisor</div>
+                    <div class="company-name">Myanmar Nilar Food Stuffs – Yangon</div>
+                    <div class="job-date">Feb 2017 – Aug 2019</div>
+                    <ul class="job-description">
+                        <li>Developed sales strategies and forecasts.</li>
+                        <li>Handled customer inquiries and performance reporting.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Education -->
+            <section id="education" class="section">
+                <h2><i class="fa-solid fa-graduation-cap"></i>Education</h2>
+                <div class="education-item">
+                    <div class="degree-title">B.A. History</div>
+                    <div class="school-name">Kyaukse University, Mandalay</div>
+                    <div class="degree-date">Jun 2018</div>
+                </div>
+                <div class="education-item">
+                    <div class="degree-title">Business in Marketing (IQN)</div>
+                    <div class="school-name">MIBA, Yangon</div>
+                    <div class="degree-date">Nov 2018</div>
+                </div>
+                <div class="education-item">
+                    <div class="degree-title">Business in English (IQN)</div>
+                    <div class="school-name">MIBA, Yangon</div>
+                    <div class="degree-date">Expected Nov 2024</div>
+                </div>
+            </section>
+            
+            <!-- Technical Skills -->
+            <section id="technical-skills" class="section">
+                <h2><i class="fa-solid fa-screwdriver-wrench"></i>Technical Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Microsoft Excel</span>
+                        </div>
+                        <div class="skill-bar-container">
+                            <div class="skill-bar" data-proficiency="100"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">MySQL</span>
+                        </div>
+                        <div class="skill-bar-container">
+                            <div class="skill-bar" data-proficiency="80"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Python</span>
+                        </div>
+                        <div class="skill-bar-container">
+                            <div class="skill-bar" data-proficiency="60"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">R Programming</span>
+                        </div>
+                        <div class="skill-bar-container">
+                            <div class="skill-bar" data-proficiency="60"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Power BI</span>
+                        </div>
+                        <div class="skill-bar-container">
+                            <div class="skill-bar" data-proficiency="60"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Microsoft PowerPoint</span>
+                        </div>
+                        <div class="skill-bar-container">
+                            <div class="skill-bar" data-proficiency="80"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Data Cleaning & Prep</span>
+                        </div>
+                        <div class="skill-bar-container">
+                            <div class="skill-bar" data-proficiency="100"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Personal Attributes -->
+            <section id="attributes" class="section">
+                <h2><i class="fa-solid fa-brain"></i>Personal Attributes</h2>
+                <div class="attributes">
+                    <div class="attribute-item">Critical Thinking</div>
+                    <div class="attribute-item">Problem Solving</div>
+                    <div class="attribute-item">Fast Learner</div>
+                    <div class="attribute-item">Adaptability</div>
+                    <div class="attribute-item">Multitasking</div>
+                    <div class="attribute-item">Leadership</div>
+                    <div class="attribute-item">Detail-Oriented</div>
+                </div>
+            </section>
+            
+            <!-- Hobbies -->
+            <section id="hobbies" class="section">
+                <h2><i class="fa-solid fa-gamepad"></i>Hobbies</h2>
+                <div class="hobbies">
+                    <div class="hobby-item">Programming & Coding</div>
+                    <div class="hobby-item">Exploring New Technologies</div>
+                    <div class="hobby-item">Photography</div>
+                    <div class="hobby-item">Puzzles & Logical Games</div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // JavaScript for scroll-based animations and skill rating visualization
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('.section');
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.2
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                        // Animate skill bars when the section comes into view
+                        if (entry.target.id === 'technical-skills') {
+                            animateSkillBars();
+                        }
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+            // Function to animate skill bars
+            function animateSkillBars() {
+                const skillBars = document.querySelectorAll('.skill-bar');
+                skillBars.forEach(bar => {
+                    const proficiency = bar.getAttribute('data-proficiency');
+                    bar.style.width = proficiency + '%';
+                });
+            }
+        });
+    </script>
+</body>
+</html>
